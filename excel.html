@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Pro Master | Alan Acosta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00a3ff;
+            --secondary-color: #0066cc;
+            --accent-color: #40ff00;
+            --background-dark: #080b14;
+            --text-light: #ffffff;
+            --text-gray: #8a8a8a;
+            --gradient-1: linear-gradient(135deg, #00a3ff, #0066cc);
+            --gradient-2: linear-gradient(135deg, #40ff00, #2db300);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: rgba(8, 11, 20, 0.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(8, 11, 20, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 163, 255, 0.1), transparent 70%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background: var(--gradient-1);
+            padding: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .description {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--gradient-1);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 163, 255, 0.3);
+        }
+
+        .interactive-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(to bottom, #0c1018, #080b14);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .iframes-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            gap: 3rem;
+        }
+
+        .iframe-wrapper {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .iframe-wrapper:hover {
+            transform: translateY(-10px);
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Excel Pro Master</a>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#caracteristicas">Características</a>
+                <a href="#recursos">Recursos</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="profile-container">
+                <img src="img/fotoexcel.png" alt="Alan Acosta" class="profile-img">
+            </div>
+            <h1>Transforma tu Carrera con Excel</h1>
+            <p class="subtitle">Masterclass por Alan Acosta</p>
+            <p class="description">Descubre cómo convertirte en un experto en Excel y destaca en tu campo profesional. 
+            Desde fórmulas básicas hasta análisis avanzado de datos, automatización y business intelligence.</p>
+            <a href="#recursos" class="cta-button">Comenzar mi Transformación</a>
+        </div>
+    </section>
+
+    <section id="caracteristicas">
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-chart-line feature-icon"></i>
+                <h3>Análisis Avanzado</h3>
+                <p>Domina técnicas de análisis de datos y visualización para tomar decisiones informadas.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-robot feature-icon"></i>
+                <h3>Automatización</h3>
+                <p>Aprende a automatizar tareas repetitivas y optimiza tu flujo de trabajo.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-brain feature-icon"></i>
+                <h3>Business Intelligence</h3>
+                <p>Transforma datos en insights valiosos para tu negocio.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="interactive-section" id="recursos">
+        <h2 class="section-title">Recursos Interactivos</h2>
+        <div class="iframes-container">
+            <center><h3>Primer cuestionario</h3>
+            </center>
+            <div class="iframe-wrapper">
+                <iframe src="https://wordwall.net/es/embed/543b271cefea4f27b54750e4e057518a?themeId=21&templateId=8&fontStackId=0" allowfullscreen></iframe>
+            </div>
+            <center><h3>Segundo cuestionario</h3>
+            </center>
+            
+            <div class="iframe-wrapper">
+                <iframe src="https://wordwall.net/es/embed/399a7b3582924a29aa5a1e8f1d7cdb7c?themeId=21&templateId=8&fontStackId=0" allowfullscreen></iframe>
+            </div>
+            <center><h3>Tercer cuestionario</h3>
+            </center>
+            <div>
+                <iframe style="max-width:100%" src="https://wordwall.net/es/embed/5023ed4594994a14b7f8e43f1fcbe120?themeId=21&templateId=30&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

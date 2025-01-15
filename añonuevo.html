@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Cobertura Legal Prepaga</title>
+    <style>
+        :root {
+            --gold: #C5A572;
+            --dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 100px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1920/1080') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-logo img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9em;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/api/placeholder/100/100" alt="Elite Logo">
+            <h1>Elite Cobertura Legal Prepaga</h1>
+            <p class="subtitle">Un proyecto del "Estudio Jurídico Carlos D. Paniagua & Asociados"</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">INICIO</a></li>
+                <li><a href="#quienes-somos">QUIÉNES SOMOS</a></li>
+                <li><a href="#servicios">SERVICIOS</a></li>
+                <li><a href="#afiliarse">AFILIARSE</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>ELITE • SERVICIOS</h2>
+                <h1>Fuerzas de Seguridad</h1>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="/api/placeholder/150/150" alt="Elite Logo">
+                <p>Un proyecto del «Estudio Jurídico Carlos D. Paniagua & Asociados»</p>
+            </div>
+            <div class="footer-social">
+                <h3>SEGUINOS EN REDES SOCIALES</h3>
+                <div class="social-icons">
+                    <a href="#"><img src="/api/placeholder/24/24" alt="Facebook"></a>
+                    <a href="#"><img src="/api/placeholder/24/24" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© Copyright 2024 Elite Cobertura Legal Prepaga. Todos los derechos reservados.</p>
+            <p>Chic Lite | Programado por Alan Acosta.</p>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top">↑</a>
+
+    <script>
+        // Back to top button functionality
+        const backToTop = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = document.querySelector(this.getAttribute('href'));
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
